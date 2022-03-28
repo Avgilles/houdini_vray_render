@@ -1,10 +1,8 @@
-#import hou
+import hou
 import os
 # from hutil.Qt import QtWidgets
 from PySide2 import QtUiTools , QtWidgets
-
-from dotenv import dotenv_values
-config = dotenv_values(".env")
+import re
 
 """
 def scriptPath():
@@ -17,6 +15,7 @@ def scriptPath():
     return (newScriptPath)
 
 """
+scriptPath = re.sub(r"\\", "/", os.path.dirname(os.path.abspath(__file__)))
 
 
 class ProjectManager(QtWidgets.QWidget):
@@ -29,7 +28,7 @@ class ProjectManager(QtWidgets.QWidget):
 
         # Load UI file
         loader = QtUiTools.QUiLoader()
-        self.ui = loader.load(f'{config["SCRIPT_PATH"]}/python/houdini_vray_render/projetManager.ui')
+        self.ui = loader.load(f'{scriptPath}/projetManager.ui')
 
         # get UI elements
         self.setproj = self.ui.findChild(QtWidgets.QPushButton, "setproj_btn")

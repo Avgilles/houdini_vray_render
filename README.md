@@ -14,10 +14,10 @@ Then create a new panel interface and paste the following code :
 
 ```python
 from importlib import reload
-from projectManager import project
+from houdini_vray_render import project
 
 reload(project)
 
 def onCreateInterface():
-    return project.onCreateInterface()
+    return project.ProjectManager()
 ```
