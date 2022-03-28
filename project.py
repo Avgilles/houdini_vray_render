@@ -1,10 +1,10 @@
-import hou
+#import hou
 import os
 # from hutil.Qt import QtWidgets
 from PySide2 import QtUiTools , QtWidgets
 
-
-print("loading project")
+from dotenv import dotenv_values
+config = dotenv_values(".env")
 
 """
 def scriptPath():
@@ -17,7 +17,7 @@ def scriptPath():
     return (newScriptPath)
 
 """
-scriptPath = 'C:/Users/Gilles AVRAAM/Documents/houdini19.0/scripts'
+
 
 class ProjectManager(QtWidgets.QWidget):
     def __init__(self):
@@ -29,7 +29,7 @@ class ProjectManager(QtWidgets.QWidget):
 
         # Load UI file
         loader = QtUiTools.QUiLoader()
-        self.ui = loader.load(f'{scriptPath}/python/projectManager/projetManager.ui')
+        self.ui = loader.load(f'{config["SCRIPT_PATH"]}/python/houdini_vray_render/projetManager.ui')
 
         # get UI elements
         self.setproj = self.ui.findChild(QtWidgets.QPushButton, "setproj_btn")
@@ -106,3 +106,6 @@ class Popup(QtWidgets.QDialog):
         super().__init__(parent)
         self.resize(600,300)
         self.label = QtWidgets.QLabel(name, self)
+
+if __name__ == '__main__':
+    print(config)
